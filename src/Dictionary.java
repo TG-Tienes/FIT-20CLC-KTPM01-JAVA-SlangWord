@@ -113,4 +113,74 @@ public class Dictionary {
         }
         return resList;
     }
+
+
+    //
+    boolean editSlangWord(String word){
+        if(!slangList.containsKey(word))
+            return false;
+
+        int choice = 1, n = slangList.get(word).size();
+        Scanner inputScanner = new Scanner(System.in);
+        ArrayList<String> tmpDefList = slangList.get(word);
+
+        // Edit slang word
+        if(choice == 1){
+            String newWord;
+            int continueEnterWord = 0;
+            slangList.remove(word);
+
+            do{
+                System.out.print("Edit slang word: ");
+                newWord = inputScanner.nextLine();
+
+                if(slangList.containsKey(newWord)){
+                    System.out.println("!!! Slang word existed !!!");
+                    System.out.print("1.Enter Again\n2-Exit\nYOUR CHOICE: ");
+                    continueEnterWord = inputScanner.nextInt();
+                    System.out.println();
+
+                    if(continueEnterWord == 2)
+                        break;
+                }
+            } while (continueEnterWord == 1);
+
+            if(continueEnterWord == 1)
+                slangList.put(newWord, tmpDefList);
+        }
+        // edit slang definition
+        else if(choice == 2){
+            String tmpString;
+
+
+            for(int i = 0; i < n; ++i){
+                System.out.print("Enter new definition for \"" + tmpDefList.get(i) + "\" (enter \"skipThis\" to skip: ");
+                tmpString = inputScanner.nextLine();
+
+                if(tmpString.compareTo("skipThis") == 0)
+                    continue;
+
+                tmpDefList.add(i, tmpString);
+            }
+            slangList.replace(word, tmpDefList);
+        }
+
+        return true;
+    }
+
+    // Show Definition of a slang word
+    private void showDefInOder(List<String> defList){
+        int i = 1;
+
+        for(String s : defList)
+            System.out.println(i + ".  " + defList.get(i));
+    }
+
+    private void showDefInOrder(String word){
+        List<String> tmpDefList = slangList.get(word);
+        int i = 1;
+
+        for(String s : tmpDefList)
+            System.out.println(i + ".  " + tmpDefList.get(i));
+    }
 }

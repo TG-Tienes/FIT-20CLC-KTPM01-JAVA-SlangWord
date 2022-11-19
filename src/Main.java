@@ -7,16 +7,13 @@ public class Main {
         dic.searchBySlangWord("AMA");
         dic.searchBySlangWord("$");
 
-        ArrayList<String> aaa = new ArrayList<>();
-
-        aaa.add("Truong Gia Tien");
-        aaa.add("Nguyen Dinh Van");
-
-
 //        dic.showHistory();
 
-        dic.addSlangWord("AMA");
+//        dic.addSlangWord("AMA");
 
+        dic.editSlangWord("AMA");
+
+        System.out.println(dic.searchBySlangWord("TGT"));
         System.out.println(dic.searchBySlangWord("AMA"));
     }
 }
