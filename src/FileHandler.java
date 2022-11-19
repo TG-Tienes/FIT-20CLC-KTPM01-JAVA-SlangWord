@@ -1,5 +1,3 @@
-package FileHandler;
-
 import java.io.*;
 
 import java.util.ArrayList;
@@ -47,12 +45,6 @@ public class FileHandler {
         }
 
         return slangList;
-    }
-
-    public static void main(String[] args) {
-        Map<String, ArrayList<String>> tmp = readFile("src\\data\\slang.txt");
-
-        System.out.println(tmp.get("AA"));
     }
 
 
