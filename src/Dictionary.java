@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
+
 
 public class Dictionary {
     private final Map<String, ArrayList<String>> slangList;
@@ -53,5 +55,62 @@ public class Dictionary {
         else {
             System.out.println("Empty Search History");
         }
+    }
+
+    private int enterChoice(){
+        int result = -1;
+        Scanner inputScanner = new Scanner(System.in);
+
+        System.out.print("Enter your choice: ");
+
+        result = inputScanner.nextInt();
+
+        return result;
+    }
+
+    private int addWord(String word, ArrayList<String> defList){
+        if(slangList.containsKey(word)){
+            int choice = enterChoice();
+
+            // 0: overwrite definition (make new def)
+            // 1: add more definitions
+            // 3: Exit and do nothing
+            if(choice == 3)
+                return choice;
+            if(choice == 1)
+                defList.addAll(slangList.get(word));
+            slangList.replace(word, defList);
+
+            return choice;
+        }
+        else{
+            slangList.put(word, defList);
+        }
+        return 2;
+    }
+
+    int addSlangWord(String word){
+        ArrayList<String> defList = inputSlangDef();
+
+        return addWord(word, defList);
+    }
+
+    private ArrayList<String> inputSlangDef(){
+        ArrayList<String> resList = new ArrayList<>();
+        Scanner inputScanner = new Scanner(System.in);
+        String tmpString;
+        int numOfDef = 0;
+
+        System.out.print("Enter the number of definition: ");
+        numOfDef = inputScanner.nextInt();
+        inputScanner.nextLine();
+
+        for(int i = 0; i < numOfDef; ++i){
+            System.out.print("Enter definition: ");
+            tmpString = inputScanner.nextLine();
+
+            resList.add(tmpString);
+        }
+        return resList;
     }
 }
