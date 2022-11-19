@@ -120,15 +120,14 @@ public class Dictionary {
         if(!slangList.containsKey(word))
             return false;
 
-        int choice = 1, n = slangList.get(word).size();
+        int choice = 2;
         Scanner inputScanner = new Scanner(System.in);
         ArrayList<String> tmpDefList = slangList.get(word);
 
         // Edit slang word
         if(choice == 1){
             String newWord;
-            int continueEnterWord = 0;
-            slangList.remove(word);
+            int continueEnterWord = 1;
 
             do{
                 System.out.print("Edit slang word: ");
@@ -143,26 +142,38 @@ public class Dictionary {
                     if(continueEnterWord == 2)
                         break;
                 }
+                else
+                    break;
             } while (continueEnterWord == 1);
 
-            if(continueEnterWord == 1)
+            if(continueEnterWord == 1){
+                slangList.remove(word);
                 slangList.put(newWord, tmpDefList);
+            }
         }
-        // edit slang definition
-        else if(choice == 2){
+        else if(choice == 2){        // edit slang definition
             String tmpString;
+            String []editDefIndex;
 
+            System.out.println("Definitions of this slang word: " + tmpDefList.size());
+            // Show def list cho ngdung
+            showDefInOder(tmpDefList);
 
-            for(int i = 0; i < n; ++i){
-                System.out.print("Enter new definition for \"" + tmpDefList.get(i) + "\" (enter \"skipThis\" to skip: ");
+            System.out.print("Enter the definitions you want to edit (separate by \",\"): ");
+            tmpString = inputScanner.nextLine();
+            editDefIndex = tmpString.split(",");
+
+            for (String i : editDefIndex) {
+                int index = Integer.parseInt(i) - 1;
+                System.out.print("Enter new definition for \""
+                        + tmpDefList.get(index)
+                        + "\": ");
                 tmpString = inputScanner.nextLine();
 
-                if(tmpString.compareTo("skipThis") == 0)
-                    continue;
-
-                tmpDefList.add(i, tmpString);
+                tmpDefList.set(index, tmpString);
             }
-            slangList.replace(word, tmpDefList);
+
+            slangList.put(word, tmpDefList);
         }
 
         return true;
@@ -173,7 +184,7 @@ public class Dictionary {
         int i = 1;
 
         for(String s : defList)
-            System.out.println(i + ".  " + defList.get(i));
+            System.out.println(i++ + ".  " + s);
     }
 
     private void showDefInOrder(String word){
@@ -181,6 +192,7 @@ public class Dictionary {
         int i = 1;
 
         for(String s : tmpDefList)
-            System.out.println(i + ".  " + tmpDefList.get(i));
+            System.out.println(i++ + ".  " + s);
+
     }
 }
