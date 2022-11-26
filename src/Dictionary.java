@@ -1,18 +1,18 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.*;
 
 
 public class Dictionary {
-    private final Map<String, ArrayList<String>> slangList;
+    private Map<String, ArrayList<String>> slangList;
     private final Map<String, ArrayList<String>> originalList;
     private ArrayList<String> searchHistoryList;
 
     // Constructor doc file va luu vao list
-    Dictionary(String fileDir){
+    Dictionary(String fileDir, String originalFileDir){
         this.slangList = FileHandler.readFile(fileDir);
-        this.originalList = this.slangList;
+        this.originalList = FileHandler.readFile(fileDir);
         searchHistoryList = new ArrayList<>();
     }
 
@@ -115,7 +115,7 @@ public class Dictionary {
     }
 
 
-    //
+    // edit a slang
     boolean editSlangWord(String word){
         if(!slangList.containsKey(word))
             return false;
@@ -179,6 +179,26 @@ public class Dictionary {
         return true;
     }
 
+    // remove slang word
+    boolean removeSlangWord(String word){
+        if(!slangList.containsKey(word))
+            return false;
+        int choice = 1;
+        System.out.print("Delete word ? 1-yes 0-no\nYOUR CHOICE: ");
+        choice = (new Scanner(System.in)).nextInt();
+
+        if(choice == 1)
+            slangList.remove(word);
+
+        return true;
+    }
+
+    // reset original slang list
+     void resetList(String fileDir){
+        this.slangList = this.originalList;
+
+    }
+
     // Show Definition of a slang word
     private void showDefInOder(List<String> defList){
         int i = 1;
@@ -194,5 +214,9 @@ public class Dictionary {
         for(String s : tmpDefList)
             System.out.println(i++ + ".  " + s);
 
+    }
+
+    void testWrite(){
+        FileHandler.writeFile("src\\data\\slang_test.txt", this.slangList);
     }
 }
