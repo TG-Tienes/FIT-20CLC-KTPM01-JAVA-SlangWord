@@ -245,19 +245,26 @@ public class Dictionary {
     }
 
     // remove slang word
-    boolean removeSlangWord(String word){
+    int removeSlangWord(String word){
         if(!slangList.containsKey(word))
-            return false;
+            return -1;
         int choice = 1;
-        System.out.print("Delete word ? 1-yes 0-no\nYOUR CHOICE: ");
+
+        System.out.println("""
+                \nDelete word ?
+                Choose
+                ==========
+                | 1. Yes |
+                | 0. No  |
+                ==========""");
+        System.out.print("YOUR CHOICE: ");
         choice = (new Scanner(System.in)).nextInt();
 
         if(choice == 1){
             slangList.remove(word);
-
         }
 
-        return true;
+        return choice;
     }
 
     // reset original slang list
@@ -367,5 +374,9 @@ public class Dictionary {
         catch (Exception e){
             System.out.println("Exception 101: Clear console failed");
         }
+    }
+
+    void writeFile(String fileDir){
+        FileHandler.writeFile(fileDir, this.slangList);
     }
 }

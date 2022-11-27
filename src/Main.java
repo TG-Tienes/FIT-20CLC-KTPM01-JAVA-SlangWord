@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -38,6 +39,8 @@ public class Main {
                     System.out.print("YOUR CHOICE: ");
                     innerChoice = (new Scanner(System.in)).nextInt();
                 }while (innerChoice != 0);
+
+
             }
             else if(featureChoice == 2){
                 do{
@@ -83,6 +86,9 @@ public class Main {
                     System.out.print("YOUR CHOICE: ");
                     innerChoice = (new Scanner(System.in)).nextInt();
                 }while (innerChoice != 0);
+
+                dic.writeFile("src\\data\\slang.txt");
+
             }
             else if(featureChoice == 5){
                 do{
@@ -98,6 +104,44 @@ public class Main {
                     System.out.print("YOUR CHOICE: ");
                     innerChoice = (new Scanner(System.in)).nextInt();
                 }while (innerChoice != 0);
+
+                dic.writeFile("src\\data\\slang.txt");
+            }
+            else if(featureChoice == 6){
+                do{
+                    clearConsole();
+                    System.out.println("----- Delete Slang word -----");
+                    System.out.print("Enter slang word: ");
+
+                    String word = (new Scanner(System.in)).nextLine();
+                    int tmp = dic.removeSlangWord(word);
+                    if(tmp == 1)
+                        System.out.println("""
+                        ---------------------------------------
+                        ||   DELETE SLANG WORD SUCCESSFUL    ||
+                        ---------------------------------------
+                        """);
+                    else if(tmp == -1)
+                        System.out.println("""
+                        -----------------------------------------
+                        ||   DELETE SLANG WORD UNSUCCESSFUL    ||
+                        -----------------------------------------
+                        """);
+                    else
+                        System.out.println("""
+                        -------------------------------
+                        ||   SLANG WORD NOT EXIST    ||
+                        -------------------------------
+                        """);
+
+
+                    System.out.println("\nCONTINUE ? ");
+                    printYesNo();
+                    System.out.print("YOUR CHOICE: ");
+                    innerChoice = (new Scanner(System.in)).nextInt();
+                }while (innerChoice != 0);
+
+                dic.writeFile("src\\data\\slang.txt");
             }
             clearConsole();
         }while (featureChoice != 0);
@@ -113,6 +157,7 @@ public class Main {
                     |  3. Show search history                                      |
                     |  4. Add new slang word                                       |
                     |  5. Edit slang word                                          |
+                    |  6. Delete slang word                                        |
                     |  7. Reset Slang word list                                    |
                     |  8. Random slang word (On this day slang word)               |
                     |  9. Quiz random slang word                                   |
