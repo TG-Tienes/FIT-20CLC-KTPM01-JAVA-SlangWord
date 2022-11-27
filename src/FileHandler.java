@@ -47,5 +47,28 @@ public class FileHandler {
         return slangList;
     }
 
+    static void writeFile(String fileDir, Map<String, ArrayList<String>> slangList){
+        try {
+            BufferedWriter fw = new BufferedWriter(new FileWriter(fileDir));
 
+            for(String key : slangList.keySet()){
+                ArrayList<String> defList = slangList.get(key);
+                StringBuilder sb = new StringBuilder(key);
+                int n = defList.size();
+
+                sb.append("`");
+
+                for(int i = 0; i < n - 1; ++i){
+                    sb.append(defList.get(i));
+                    sb.append("|");
+                }
+                sb.append(defList.get(n - 1));
+                sb.append("\n");
+                fw.write(sb.toString());
+            }
+
+        } catch (Exception e){
+            System.out.println(e);
+        }
+    }
 }
