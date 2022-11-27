@@ -14,6 +14,7 @@ public class Main {
 
             if(featureChoice == 1){
                 do{
+                    clearConsole();
                     System.out.println("                ----- Search by Slang word -----");
                     System.out.print("Enter slang word: ");
 
@@ -35,8 +36,29 @@ public class Main {
                 }while (innerChoice != 0);
             }
             else if(featureChoice == 2){
-            }
+                do{
+                    clearConsole();
+                    System.out.println("                ----- Search by Definition -----");
+                    System.out.print("Enter keyword: ");
 
+                    String word = (new Scanner(System.in)).nextLine();
+                    List<String> l = dic.searchByDefinition(word);
+
+                    if(!l.isEmpty()){
+                        System.out.println("\nSlang word(s): ");
+                        showList(l);
+                    }
+                    else {
+                        System.out.println("!!! Slang word not exist !!!");
+                    }
+
+                    System.out.println("\nCONTINUE ? ");
+                    printYesNo();
+                    System.out.print("YOUR CHOICE: ");
+                    innerChoice = (new Scanner(System.in)).nextInt();
+                }while (innerChoice != 0);
+            }
+            clearConsole();
         }while (featureChoice != 0);
     }
 
@@ -75,12 +97,13 @@ public class Main {
             System.out.println(i++ + ". " + s);
     }
 
-    static void clear() throws IOException, InterruptedException {
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-    }
     static void clearConsole(){
-        try {clear();}
-        catch (Exception e){System.out.println("Exception 101: Clear console failed");}
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        }
+        catch (Exception e){
+            System.out.println("Exception 101: Clear console failed");
+        }
     }
 
     static void pressToContinue(){
