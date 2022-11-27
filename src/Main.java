@@ -15,7 +15,7 @@ public class Main {
             if(featureChoice == 1){
                 do{
                     clearConsole();
-                    System.out.println("                ----- Search by Slang word -----");
+                    System.out.println("----- Search by Slang word -----");
                     System.out.print("Enter slang word: ");
 
                     String word = (new Scanner(System.in)).nextLine();
@@ -38,7 +38,7 @@ public class Main {
             else if(featureChoice == 2){
                 do{
                     clearConsole();
-                    System.out.println("                ----- Search by Definition -----");
+                    System.out.println("----- Search by Definition -----");
                     System.out.print("Enter keyword: ");
 
                     String word = (new Scanner(System.in)).nextLine();
@@ -58,6 +58,25 @@ public class Main {
                     innerChoice = (new Scanner(System.in)).nextInt();
                 }while (innerChoice != 0);
             }
+            else if(featureChoice == 3){
+
+            }
+            else if(featureChoice == 4){
+                do{
+                    clearConsole();
+                    System.out.println("----- Add new Slang word -----");
+                    System.out.print("Enter slang word: ");
+
+                    String word = (new Scanner(System.in)).nextLine();
+                    dic.addSlangWord(word);
+
+                    System.out.println("\nCONTINUE ? ");
+                    printYesNo();
+                    System.out.print("YOUR CHOICE: ");
+                    innerChoice = (new Scanner(System.in)).nextInt();
+                }while (innerChoice != 0);
+            }
+
             clearConsole();
         }while (featureChoice != 0);
     }

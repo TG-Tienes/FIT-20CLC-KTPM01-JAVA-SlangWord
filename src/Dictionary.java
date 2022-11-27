@@ -57,42 +57,56 @@ public class Dictionary {
         }
     }
 
-    private int enterChoice(){
-        int result;
-        Scanner inputScanner = new Scanner(System.in);
+    void addSlangWord(String word){
+        ArrayList<String> defList = inputSlangDef();
+        int choice = 0;
 
-        System.out.print("Enter your choice: ");
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        }
+        catch (Exception e){
+            System.out.println("Exception 101: Clear console failed");
+        }
 
-        result = inputScanner.nextInt();
-
-        return result;
-    }
-
-    private int addWord(String word, ArrayList<String> defList){
         if(slangList.containsKey(word)){
-            int choice = enterChoice();
 
-            // 0: overwrite definition (make new def)
             // 1: add more definitions
-            // 3: Exit and do nothing
-            if(choice == 3)
-                return choice;
-            if(choice == 1)
-                defList.addAll(slangList.get(word));
-            slangList.replace(word, defList);
+            // else: overwrite definition (make new def)
+            System.out.println("""
+                          !!! Slang word Existed !!!
+                    ======================================
+                    | 1. Duplicate (Add more definitions)|
+                    | 2. Overwrite                       |
+                    ======================================""");
+            System.out.print("YOUR CHOICE: ");
+            choice = (new Scanner(System.in)).nextInt();
 
-            return choice;
+            if(choice == 1){
+                defList.addAll(slangList.get(word));
+                System.out.println("""
+                        --------------------------------------
+                        ||   !!! DUPLICATE Successful !!!   ||
+                        --------------------------------------
+                        """);
+            }
+            else {
+                System.out.println("""
+                        --------------------------------------
+                        ||   !!! OVERWRITE Successful !!!   ||
+                        --------------------------------------
+                        """);
+            }
+
+            slangList.replace(word, defList);
         }
         else{
             slangList.put(word, defList);
+            System.out.println("""
+                        -------------------------------------------
+                        ||   !!! Add slang word Successful !!!   ||
+                        -------------------------------------------
+                        """);
         }
-        return 2;
-    }
-
-    int addSlangWord(String word){
-        ArrayList<String> defList = inputSlangDef();
-
-        return addWord(word, defList);
     }
 
     private ArrayList<String> inputSlangDef(){
@@ -101,10 +115,12 @@ public class Dictionary {
         String tmpString;
         int numOfDef = 0;
 
-        System.out.print("Enter the number of definition: ");
+        System.out.println("------ Enter Definition(s) ------");
+        System.out.print("Enter the number of definition (integer): ");
         numOfDef = inputScanner.nextInt();
         inputScanner.nextLine();
 
+        System.out.println("-----------------------------------------");
         for(int i = 0; i < numOfDef; ++i){
             System.out.print("Enter definition: ");
             tmpString = inputScanner.nextLine();
