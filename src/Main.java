@@ -17,6 +17,6 @@ public class Main {
 //        System.out.println(dic.searchBySlangWord("TGT"));
 //        dic.testWrite();
 //        System.out.println(dic.searchBySlangWord("$"));
-            dic.randomSlangWord();
+            dic.quizSlang();
     }
 }

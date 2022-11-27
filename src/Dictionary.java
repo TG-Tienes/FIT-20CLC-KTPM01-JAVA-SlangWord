@@ -224,6 +224,42 @@ public class Dictionary {
 
         System.out.println("Slang word: " + key + " - definition: " + this.slangList.get(key));
     }
+
+    void quizSlang(){
+        String answerKey = randomKey(), answerDefinition;
+        String []multipleChoiceDefinition = new String[3];
+        String []multipleChoiceAnswer = new String[4];
+
+        int n = this.slangList.get(answerKey).size()
+                , answerIndex = (new Random()).nextInt(4), j = 0, choice = -1;
+
+        answerDefinition = this.slangList.get(answerKey).get((new Random()).nextInt(n));
+        for(int i = 0; i < 3; ++i)
+            multipleChoiceDefinition[i] = this.slangList.get(randomKey()).get(0);
+
+
+        multipleChoiceAnswer[answerIndex] = answerDefinition;
+        for(int i = 0; i < 4; ++i){
+            if(i == answerIndex)
+                continue;
+            multipleChoiceAnswer[i] = multipleChoiceDefinition[j];
+            ++j;
+        }
+
+        System.out.println("Slang word: " + answerKey );
+
+        for(int i = 0; i < 4; ++i){
+            System.out.println((i + 1) + ". " + multipleChoiceAnswer[i]);
+        }
+
+        System.out.print("YOUR CHOICE: ");
+        choice = (new Scanner(System.in)).nextInt();
+
+        if(choice - 1 == answerIndex)
+            System.out.println("!!! CORRECT !!!");
+        else
+            System.out.println("!!! INCORRECT !!!");
+    }
 //    void testWrite(){
 //        FileHandler.writeFile("src\\data\\slang_test.txt", this.slangList);
 //    }
