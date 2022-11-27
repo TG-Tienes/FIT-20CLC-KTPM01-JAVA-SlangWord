@@ -26,7 +26,11 @@ public class Main {
                         showList(l);
                     }
                     else {
-                        System.out.println("!!! Slang word not exist !!!");
+                        System.out.println("""
+                        -------------------------------
+                        ||   SLANG WORD NOT EXIST    ||
+                        -------------------------------
+                        """);
                     }
 
                     System.out.println("\nCONTINUE ? ");
@@ -49,7 +53,11 @@ public class Main {
                         showList(l);
                     }
                     else {
-                        System.out.println("!!! Slang word not exist !!!");
+                        System.out.println("""
+                        -------------------------------
+                        ||   SLANG WORD NOT EXIST    ||
+                        -------------------------------
+                        """);
                     }
 
                     System.out.println("\nCONTINUE ? ");
@@ -76,7 +84,21 @@ public class Main {
                     innerChoice = (new Scanner(System.in)).nextInt();
                 }while (innerChoice != 0);
             }
+            else if(featureChoice == 5){
+                do{
+                    clearConsole();
+                    System.out.println("----- Edit Slang word -----");
+                    System.out.print("Enter slang word: ");
 
+                    String word = (new Scanner(System.in)).nextLine();
+                    dic.editSlangWord(word);
+
+                    System.out.println("\nCONTINUE ? ");
+                    printYesNo();
+                    System.out.print("YOUR CHOICE: ");
+                    innerChoice = (new Scanner(System.in)).nextInt();
+                }while (innerChoice != 0);
+            }
             clearConsole();
         }while (featureChoice != 0);
     }
@@ -104,6 +126,7 @@ public class Main {
         int choice = -1;
 
         System.out.println("""
+                \nChoose
                 ==========
                 | 1. Yes |
                 | 0. No  |
@@ -136,25 +159,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-//        Dictionary dic = new Dictionary("src\\data\\slang.txt", "src\\data\\original_slang.txt");
-
-//        dic.searchBySlangWord("AMA");
-//        dic.searchBySlangWord("$");
-
-//        dic.showHistory();
-
-//        dic.addSlangWord("AMA");
-
-//        dic.editSlangWord("$");
-
-//        System.out.println(dic.searchBySlangWord("TGT"));
-//        dic.testWrite();
-//        System.out.println(dic.searchBySlangWord("$"));
-//            dic.quizDefinition();
-
-//        pressToContinue();
-//        showOption();
-
         menu();
     }
 }

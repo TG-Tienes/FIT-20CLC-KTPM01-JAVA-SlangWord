@@ -61,12 +61,7 @@ public class Dictionary {
         ArrayList<String> defList = inputSlangDef();
         int choice = 0;
 
-        try {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        }
-        catch (Exception e){
-            System.out.println("Exception 101: Clear console failed");
-        }
+       clearConsole();
 
         if(slangList.containsKey(word)){
 
@@ -74,6 +69,8 @@ public class Dictionary {
             // else: overwrite definition (make new def)
             System.out.println("""
                           !!! Slang word Existed !!!
+                                    ------
+                    Choose
                     ======================================
                     | 1. Duplicate (Add more definitions)|
                     | 2. Overwrite                       |
@@ -84,16 +81,16 @@ public class Dictionary {
             if(choice == 1){
                 defList.addAll(slangList.get(word));
                 System.out.println("""
-                        --------------------------------------
-                        ||   !!! DUPLICATE Successful !!!   ||
-                        --------------------------------------
+                        ------------------------------
+                        ||   DUPLICATE Successful   ||
+                        ------------------------------
                         """);
             }
             else {
                 System.out.println("""
-                        --------------------------------------
-                        ||   !!! OVERWRITE Successful !!!   ||
-                        --------------------------------------
+                        ------------------------------
+                        ||   OVERWRITE Successful   ||
+                        ------------------------------
                         """);
             }
 
@@ -102,9 +99,9 @@ public class Dictionary {
         else{
             slangList.put(word, defList);
             System.out.println("""
-                        -------------------------------------------
-                        ||   !!! Add slang word Successful !!!   ||
-                        -------------------------------------------
+                        -----------------------------------
+                        ||   ADD SLANG WORD SUCCESSFUL   ||
+                        -----------------------------------
                         """);
         }
     }
@@ -132,11 +129,26 @@ public class Dictionary {
 
 
     // edit a slang
-    boolean editSlangWord(String word){
-        if(!slangList.containsKey(word))
-            return false;
+    void editSlangWord(String word){
+        if(!slangList.containsKey(word)){
+            System.out.println("""
+                        -------------------------------
+                        ||   SLANG WORD NOT EXIST    ||
+                        -------------------------------
+                        """);
+            return;
+        }
 
-        int choice = 2;
+
+        System.out.println("""
+                \nChoose
+                ================================
+                | 1. Edit slang word           |
+                | 2. Edit slang Definition(s)  |
+                ================================""");
+        System.out.print("YOUR CHOICE: ");
+
+        int choice = (new Scanner(System.in)).nextInt();
         Scanner inputScanner = new Scanner(System.in);
         ArrayList<String> tmpDefList = slangList.get(word);
 
@@ -145,42 +157,81 @@ public class Dictionary {
             String newWord;
             int continueEnterWord = 1;
 
+            clearConsole();
+
             do{
-                System.out.print("Edit slang word: ");
+                System.out.println("----- YOU CHOSE EDIT SLANG WORD -----");
+
+                System.out.println("\nOld Slang Word: " + word + "\n-----------------");
+
+                System.out.print("Enter new slang word: ");
                 newWord = inputScanner.nextLine();
 
                 if(slangList.containsKey(newWord)){
-                    System.out.println("!!! Slang word existed !!!");
-                    System.out.print("1.Enter Again\n2-Exit\nYOUR CHOICE: ");
+                    System.out.println("""
+                        ---------------------------
+                        ||   SLANG WORD EXIST    ||
+                        ---------------------------
+                        please enter again or exit
+                        """);
+
+                    System.out.println("""
+                                        \nChoose
+                                        =======================
+                                        | 1. Enter again      |
+                                        | 2. Exit (no edit)   |
+                                        =======================""");
+                    System.out.print("YOUR CHOICE: ");
+
                     continueEnterWord = inputScanner.nextInt();
+                    inputScanner.nextLine();
                     System.out.println();
 
-                    if(continueEnterWord == 2)
+                    if(continueEnterWord == 2){
+                        System.out.println("""
+                        ----------------------------
+                        ||   EXIT WITHOUT EDIT    ||
+                        ----------------------------
+                        """);
                         break;
+                    }
+
+                    clearConsole();
                 }
                 else
                     break;
+
             } while (continueEnterWord == 1);
 
             if(continueEnterWord == 1){
                 slangList.remove(word);
                 slangList.put(newWord, tmpDefList);
+
+                System.out.println("""
+                        -------------------------------------
+                        ||   EDIT SLANG WORD SUCCESSFUL    ||
+                        -------------------------------------
+                        """);
             }
         }
         else if(choice == 2){        // edit slang definition
             String tmpString;
             String []editDefIndex;
 
-            System.out.println("Definitions of this slang word: " + tmpDefList.size());
-            // Show def list cho ngdung
+            clearConsole();
+            System.out.println("----- YOU CHOSE EDIT SLANG DEFINITION(S) -----");
+            System.out.println("\nThis Slang Word: " + word + "\n-----------------");
+            System.out.println("\nDefinitions of this slang word: " + tmpDefList.size());
+            // Show def list cho nguoi dung
             showDefInOder(tmpDefList);
 
-            System.out.print("Enter the definitions you want to edit (separate by \",\"): ");
+            System.out.print("\nEnter the definitions you want to edit (separate by \",\"): ");
             tmpString = inputScanner.nextLine();
             editDefIndex = tmpString.split(",");
 
+            System.out.println();
             for (String i : editDefIndex) {
-                int index = Integer.parseInt(i) - 1;
+                int index = Integer.parseInt(i.trim()) - 1;
                 System.out.print("Enter new definition for \""
                         + tmpDefList.get(index)
                         + "\": ");
@@ -191,8 +242,6 @@ public class Dictionary {
 
             slangList.put(word, tmpDefList);
         }
-
-        return true;
     }
 
     // remove slang word
@@ -311,4 +360,12 @@ public class Dictionary {
             System.out.println("!!! INCORRECT !!!");
     }
 
+    private void clearConsole(){
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        }
+        catch (Exception e){
+            System.out.println("Exception 101: Clear console failed");
+        }
+    }
 }
