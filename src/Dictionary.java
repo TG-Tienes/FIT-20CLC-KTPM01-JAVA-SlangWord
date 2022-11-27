@@ -291,7 +291,4 @@ public class Dictionary {
         else
             System.out.println("!!! INCORRECT !!!");
     }
-//    void testWrite(){
-//        FileHandler.writeFile("src\\data\\slang_test.txt", this.slangList);
-//    }
 }
