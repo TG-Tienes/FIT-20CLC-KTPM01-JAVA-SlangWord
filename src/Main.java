@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.*;
 
 public class Main {
@@ -13,18 +14,24 @@ public class Main {
 
             if(featureChoice == 1){
                 do{
-                    clearConsole();
                     System.out.println("                ----- Search by Slang word -----");
                     System.out.print("Enter slang word: ");
 
                     String word = (new Scanner(System.in)).nextLine();
+                    List<String> l = dic.searchBySlangWord(word);
 
+                    if(l != null){
+                        System.out.println("\nSlang's Definition(s): ");
+                        showList(l);
+                    }
+                    else {
+                        System.out.println("!!! Slang word not exist !!!");
+                    }
 
-                    System.out.println("Slang's Definition(s): ");
-                    showList(dic.searchBySlangWord(word));
-
-
-//                    pressToContinue();
+                    System.out.println("\nCONTINUE ? ");
+                    printYesNo();
+                    System.out.print("YOUR CHOICE: ");
+                    innerChoice = (new Scanner(System.in)).nextInt();
                 }while (innerChoice != 0);
             }
             else if(featureChoice == 2){
@@ -52,14 +59,28 @@ public class Main {
                     ================================================================""");
     }
 
+    static void printYesNo(){
+        int choice = -1;
+
+        System.out.println("""
+                ==========
+                | 1. Yes |
+                | 0. No  |
+                ==========""");
+    }
     //
     static void showList(List<String> l){
         int i = 1;
         for(String s : l)
             System.out.println(i++ + ". " + s);
     }
+
+    static void clear() throws IOException, InterruptedException {
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+    }
     static void clearConsole(){
-        for (int i = 0; i < 50; ++i) System.out.println();
+        try {clear();}
+        catch (Exception e){System.out.println("Exception 101: Clear console failed");}
     }
 
     static void pressToContinue(){

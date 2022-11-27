@@ -33,7 +33,6 @@ public class Dictionary {
     }
 
     List<String> searchBySlangWord(String slangWord){
-        // chuyen tu khoa can tim thanh lower-case
         List<String> resultList = slangList.get(slangWord);
 
         if(resultList != null)
@@ -291,4 +290,5 @@ public class Dictionary {
         else
             System.out.println("!!! INCORRECT !!!");
     }
+
 }
