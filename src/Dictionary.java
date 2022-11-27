@@ -260,6 +260,37 @@ public class Dictionary {
         else
             System.out.println("!!! INCORRECT !!!");
     }
+
+    void quizDefinition(){
+        String answerKey = randomKey(), answerDefinition;
+        String []multipleChoiceAnswer = new String[4];
+
+        int n = this.slangList.get(answerKey).size()
+                , answerIndex = (new Random()).nextInt(4), choice = -1;
+
+        answerDefinition = this.slangList.get(answerKey).get((new Random()).nextInt(n));
+
+        multipleChoiceAnswer[answerIndex] = answerKey;
+        for(int i = 0; i < 4; ++i){
+            if(i == answerIndex)
+                continue;
+            multipleChoiceAnswer[i] = randomKey();
+        }
+
+        System.out.println("Definition: " + answerDefinition);
+
+        for(int i = 0; i < 4; ++i){
+            System.out.println((i + 1) + ". " + multipleChoiceAnswer[i]);
+        }
+
+        System.out.print("YOUR CHOICE: ");
+        choice = (new Scanner(System.in)).nextInt();
+
+        if(choice - 1 == answerIndex)
+            System.out.println("!!! CORRECT !!!");
+        else
+            System.out.println("!!! INCORRECT !!!");
+    }
 //    void testWrite(){
 //        FileHandler.writeFile("src\\data\\slang_test.txt", this.slangList);
 //    }
