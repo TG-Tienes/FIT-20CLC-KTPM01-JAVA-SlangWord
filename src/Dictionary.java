@@ -7,10 +7,10 @@ public class Dictionary {
     private ArrayList<String> historyList;
 
     // Constructor doc file va luu vao list
-    Dictionary(String fileDir, String originalFileDir){
+    Dictionary(String fileDir, String originalFileDir, String historyFileDir){
         this.slangList = FileHandler.readFile(fileDir);
         this.originalList = FileHandler.readFile(originalFileDir);
-        this.historyList = new ArrayList<>();
+        this.historyList = FileHandler.readHistory(historyFileDir);
     }
 
     List<String> searchByDefinition(String word){
@@ -25,12 +25,12 @@ public class Dictionary {
                     .map(String::toLowerCase).toList();
 
             // Tim tu khoa(sub-string) trong List
-//            if(tmpList.stream().allMatch(e -> e.contains(finalWord)))
-            for(String s : tmpList)
-                if (s.contains(finalWord)){
-                    resultList.add(i + "` " + s);
-                    break;
-                }
+            if(tmpList.stream().allMatch(e -> e.contains(finalWord)))
+//            for(String s : tmpList)
+//                if (s.contains(finalWord)){
+                    resultList.add(i + "` " + slangList.get(i));
+//                    break;
+//                }
         }
 
         return resultList;
@@ -46,20 +46,27 @@ public class Dictionary {
     }
 
     void showHistory(){
+        clearConsole();
+
         if(!historyList.isEmpty()){
             int i = 1;
 
             for(String word : historyList)
                 System.out.println(i++ + ".   " + word);
+            System.out.println();
         }
         else {
-            System.out.println("Empty Search History");
+            System.out.println("""
+                        -------------------------------
+                        ||   EMPTY SEARCH HISTORY    ||
+                        -------------------------------
+                        """);
         }
     }
 
     void addSlangWord(String word){
         ArrayList<String> defList = inputSlangDef();
-        int choice = 0;
+        int choice;
 
        clearConsole();
 
@@ -110,7 +117,7 @@ public class Dictionary {
         ArrayList<String> resList = new ArrayList<>();
         Scanner inputScanner = new Scanner(System.in);
         String tmpString;
-        int numOfDef = 0;
+        int numOfDef;
 
         System.out.println("------ Enter Definition(s) ------");
         System.out.print("Enter the number of definition (integer): ");
@@ -248,7 +255,7 @@ public class Dictionary {
     int removeSlangWord(String word){
         if(!slangList.containsKey(word))
             return -1;
-        int choice = 1;
+        int choice;
 
         System.out.println("""
                 \nDelete word ?
@@ -268,7 +275,7 @@ public class Dictionary {
     }
 
     // reset original slang list
-     void resetList(String fileDir){
+     void resetList(){
         this.slangList = this.originalList;
     }
 
@@ -378,5 +385,8 @@ public class Dictionary {
 
     void writeFile(String fileDir){
         FileHandler.writeFile(fileDir, this.slangList);
+    }
+    void writeHistory(String fileDir){
+        FileHandler.writeHistory(fileDir, this.historyList);
     }
 }

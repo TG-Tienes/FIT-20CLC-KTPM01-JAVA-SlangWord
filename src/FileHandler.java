@@ -10,7 +10,7 @@ public class FileHandler {
 
         try {
             String line;
-            String []tempPair, tempSet = null;
+            String []tempPair, tempSet;
 
             BufferedReader fr = new BufferedReader(new FileReader(fileDir));
 
@@ -67,8 +67,40 @@ public class FileHandler {
                 fw.write(sb.toString());
             }
 
+            fw.close();
         } catch (Exception e){
-            System.out.println(e);
+            System.out.println("Exception reading file: " + e);
         }
+    }
+
+    static void writeHistory(String fileDir, ArrayList<String> historyList){
+        try {
+            BufferedWriter fw = new BufferedWriter(new FileWriter(fileDir));
+            PrintWriter pw = new PrintWriter(fw);
+
+            for(String s : historyList){
+                pw.println(s);
+            }
+            fw.close();
+        } catch (Exception e){
+            System.out.println("Exception reading file: " + e);
+        }
+    }
+
+    static ArrayList<String> readHistory(String fileDir){
+        ArrayList<String> result = new ArrayList<>();
+
+        try{
+            BufferedReader fr = new BufferedReader(new FileReader(fileDir));
+            String line;
+
+            while((line = fr.readLine()) != null){
+                result.add(line);
+            }
+        }catch (Exception e){
+            System.out.println("Exception reading file: " + e);
+        }
+
+        return result;
     }
 }

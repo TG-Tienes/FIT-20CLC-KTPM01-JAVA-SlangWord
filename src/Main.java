@@ -1,11 +1,12 @@
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 public class Main {
     static void menu(){
-        Dictionary dic = new Dictionary("src\\data\\slang.txt", "src\\data\\original_slang.txt");
-        int featureChoice = -1, innerChoice = -1;
+        String slangDir = "src\\data\\slang.txt"
+                , originalDir = "src\\data\\original_slang.txt"
+                , historyDir = "src\\data\\history.txt";
+        Dictionary dic = new Dictionary(slangDir, originalDir, historyDir);
+        int featureChoice, innerChoice;
 
         do {
             showOption();
@@ -40,7 +41,7 @@ public class Main {
                     innerChoice = (new Scanner(System.in)).nextInt();
                 }while (innerChoice != 0);
 
-
+                dic.writeHistory("src\\data\\history.txt");
             }
             else if(featureChoice == 2){
                 do{
@@ -68,9 +69,12 @@ public class Main {
                     System.out.print("YOUR CHOICE: ");
                     innerChoice = (new Scanner(System.in)).nextInt();
                 }while (innerChoice != 0);
+
             }
             else if(featureChoice == 3){
-
+                System.out.println("----- SEARCH HISTORY -----\n");
+                dic.showHistory();
+                pressToContinue();
             }
             else if(featureChoice == 4){
                 do{
@@ -143,6 +147,20 @@ public class Main {
 
                 dic.writeFile("src\\data\\slang.txt");
             }
+            else if(featureChoice == 7){
+                System.out.println("----- RESET ORIGINAL SLANG LIST -----");
+
+                dic.resetList();
+
+                System.out.println("""
+                        ----------------------------------------------------
+                        ||   RESET ORIGINAL SLANG WORD LIST SUCCESSFUL    ||
+                        ----------------------------------------------------
+                        """);
+                dic.writeFile(slangDir);
+
+                pressToContinue();
+            }
             clearConsole();
         }while (featureChoice != 0);
     }
@@ -168,8 +186,6 @@ public class Main {
     }
 
     static void printYesNo(){
-        int choice = -1;
-
         System.out.println("""
                 \nChoose
                 ==========
