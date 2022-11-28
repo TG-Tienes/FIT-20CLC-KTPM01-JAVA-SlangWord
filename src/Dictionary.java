@@ -4,7 +4,7 @@ import java.util.*;
 public class Dictionary {
     private Map<String, ArrayList<String>> slangList;
     private final Map<String, ArrayList<String>> originalList;
-    private ArrayList<String> historyList;
+    private final ArrayList<String> historyList;
 
     private int streak, bestStreak, defBestStreak, defStreak;
 
@@ -32,12 +32,8 @@ public class Dictionary {
                     .map(String::toLowerCase).toList();
 
             // Tim tu khoa(sub-string) trong List
-            if(tmpList.stream().allMatch(e -> e.contains(finalWord)))
-//            for(String s : tmpList)
-//                if (s.contains(finalWord)){
+            if(tmpList.stream().anyMatch(e -> e.contains(finalWord)))
                     resultList.add(i + "` " + slangList.get(i));
-//                    break;
-//                }
         }
 
         return resultList;
