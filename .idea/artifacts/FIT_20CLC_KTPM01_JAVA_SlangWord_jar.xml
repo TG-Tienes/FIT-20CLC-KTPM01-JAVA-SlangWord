@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="FIT-20CLC-KTPM01-JAVA-SlangWord:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/FIT_20CLC_KTPM01_JAVA_SlangWord_jar</output-path>
+    <root id="archive" name="FIT-20CLC-KTPM01-JAVA-SlangWord.jar">
+      <element id="module-output" name="FIT-20CLC-KTPM01-JAVA-SlangWord" />
+    </root>
+  </artifact>
+</component>

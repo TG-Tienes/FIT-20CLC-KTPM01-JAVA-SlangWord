@@ -72,6 +72,7 @@ public class Main {
 
             }
             else if(featureChoice == 3){
+                clearConsole();
                 System.out.println("----- SEARCH HISTORY -----\n");
                 dic.showHistory();
                 pressToContinue();
@@ -125,7 +126,7 @@ public class Main {
                         ||   DELETE SLANG WORD SUCCESSFUL    ||
                         ---------------------------------------
                         """);
-                    else if(tmp == -1)
+                    else if(tmp == 0)
                         System.out.println("""
                         -----------------------------------------
                         ||   DELETE SLANG WORD UNSUCCESSFUL    ||
@@ -181,6 +182,19 @@ public class Main {
                     System.out.println("----- QUIZ SLANG WORD -----");
 
                     dic.quizSlang();
+
+                    System.out.print("\nCONTINUE ? ");
+                    printYesNo();
+                    System.out.print("YOUR CHOICE: ");
+                    innerChoice = (new Scanner(System.in)).nextInt();
+                }while (innerChoice != 0);
+            }
+            else if(featureChoice == 10){
+                do{
+                    clearConsole();
+                    System.out.println("----- QUIZ DEFINITION -----");
+
+                    dic.quizDefinition();
 
                     System.out.print("\nCONTINUE ? ");
                     printYesNo();

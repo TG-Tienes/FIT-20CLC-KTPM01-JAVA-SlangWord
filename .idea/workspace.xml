@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="FIT-20CLC-KTPM01-JAVA-SlangWord:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="116067b9-f965-4326-ae68-ae8dcaf98521" name="Changes" comment="- Hoàn thành chức năng:&#10; + tìm kiếm theo slang word&#10; + tìm kiếm theo definition, hiển thị ra tất cả các slang words trong definition có chứa keyword nhập vào&#10;-Thay đổi cấu trúc các file trong project">
+    <list default="true" id="116067b9-f965-4326-ae68-ae8dcaf98521" name="Changes" comment="Hoàn thành menu cho chức năng random slang word&#10;Hoàn thành menu cho chức năng đố vui theo slang word&#10;chỉnh sửa lại hàm của chức năng đố vui, thêm streak và best streak">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/FIT_20CLC_KTPM01_JAVA_SlangWord_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Dictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dictionary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
@@ -33,16 +42,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/GENERAL/HCMUS TEMP/nam 3 - HK01/java/project/slangword/FIT-20CLC-KTPM01-JAVA-SlangWord/src",
-    "settings.editor.selected.configurable": "editing.templates"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/GENERAL/HCMUS TEMP/nam 3 - HK01/java/project/slangword/FIT-20CLC-KTPM01-JAVA-SlangWord/src/data&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\GENERAL\HCMUS TEMP\nam 3 - HK01\java\project\slangword\FIT-20CLC-KTPM01-JAVA-SlangWord\src\data" />
       <recent name="D:\GENERAL\HCMUS TEMP\nam 3 - HK01\java\project\slangword\FIT-20CLC-KTPM01-JAVA-SlangWord\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -80,7 +94,126 @@
       <option name="project" value="LOCAL" />
       <updated>1668855952756</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="- Hoàn thành chức năng:&#10; + Thêm từ mới với các tùy chọn cho người dùng">
+      <created>1668865873837</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1668865873837</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Hoàn thành chức năng Edit slang word (edit slang key hoặc definition)">
+      <created>1668876279149</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1668876279149</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Cập nhật lại chức năng edit slang word">
+      <created>1668879951085</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1668879951085</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Hoàn thành chức năng xóa slang word">
+      <created>1669500062333</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1669500062333</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Hoàn thành chức năng random slang">
+      <created>1669535506317</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1669535506317</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Hoàn thành chức năng đố vui hiển thị 1 slang với 4 definition">
+      <created>1669540579326</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1669540579326</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Hoàn thành chức năng đố vui hiển thị 1 definition với 4 slang word">
+      <created>1669543622352</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1669543622352</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Hoàn thành chức năng ghi file">
+      <created>1669550711847</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1669550711847</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Thêm menu cho chương trình">
+      <created>1669565412864</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1669565412865</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Hoàn thành việc clear console&#10;Hoàn thành cấu trúc cho menu của tính năng 1">
+      <created>1669568201994</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1669568201994</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Thay đổi cách tính sub-string theo keyword của chức năng 2 (tìm theo definition)&#10;Thêm menu cho chức năng 2">
+      <created>1669570324689</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1669570324689</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Thay đổi cấu trúc của hàm addSlangWord&#10;Thêm menu cho chức năng 4 (add slang word)">
+      <created>1669574506112</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1669574506112</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Hàm EditSlangWord: Thêm in ra màn hình các thông báo khi chạy hàm, chỉnh sửa lại cấu trúc của hàm, chỉnh lại kiểu trả về của hàm là void (lúc trước là bool)&#10;Thêm menu cho chức năng edit">
+      <created>1669577562934</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1669577562934</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Hoàn thành menu cho chức năng 6 (delete slang word)&#10;Thêm ghi file vào sau mỗi lần chọn các chức năng 4, 5, 6">
+      <created>1669578599815</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1669578599815</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Hoàn thành đọc ghi file history&#10;Hoàn thành chức năng 3 (hiển thị history)&#10;Hoàn thành chức năng 7 (reset slang word gốc)">
+      <created>1669620148684</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1669620148684</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Hoàn thành đọc ghi file history&#10;Hoàn thành chức năng 3 (hiển thị history)&#10;Hoàn thành chức năng 7 (reset slang word gốc)">
+      <created>1669620172726</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1669620172726</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Hoàn thành menu cho chức năng random slang word&#10;Hoàn thành menu cho chức năng đố vui theo slang word&#10;chỉnh sửa lại hàm của chức năng đố vui, thêm streak và best streak">
+      <created>1669621403031</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1669621403031</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -98,7 +231,23 @@
     <MESSAGE value="Intial commit" />
     <MESSAGE value="Hoàn thành đọc file slang.txt và lưu vào cấu trúc Map" />
     <MESSAGE value="- Hoàn thành chức năng:&#10; + tìm kiếm theo slang word&#10; + tìm kiếm theo definition, hiển thị ra tất cả các slang words trong definition có chứa keyword nhập vào&#10;-Thay đổi cấu trúc các file trong project" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Hoàn thành chức năng:&#10; + tìm kiếm theo slang word&#10; + tìm kiếm theo definition, hiển thị ra tất cả các slang words trong definition có chứa keyword nhập vào&#10;-Thay đổi cấu trúc các file trong project" />
+    <MESSAGE value="- Hoàn thành chức năng:&#10; + Thêm từ mới với các tùy chọn cho người dùng" />
+    <MESSAGE value="Hoàn thành chức năng Edit slang word (edit slang key hoặc definition)" />
+    <MESSAGE value="Cập nhật lại chức năng edit slang word" />
+    <MESSAGE value="Hoàn thành chức năng xóa slang word" />
+    <MESSAGE value="Hoàn thành chức năng random slang" />
+    <MESSAGE value="Hoàn thành chức năng đố vui hiển thị 1 slang với 4 definition" />
+    <MESSAGE value="Hoàn thành chức năng đố vui hiển thị 1 definition với 4 slang word" />
+    <MESSAGE value="Hoàn thành chức năng ghi file" />
+    <MESSAGE value="Thêm menu cho chương trình" />
+    <MESSAGE value="Hoàn thành việc clear console&#10;Hoàn thành cấu trúc cho menu của tính năng 1" />
+    <MESSAGE value="Thay đổi cách tính sub-string theo keyword của chức năng 2 (tìm theo definition)&#10;Thêm menu cho chức năng 2" />
+    <MESSAGE value="Thay đổi cấu trúc của hàm addSlangWord&#10;Thêm menu cho chức năng 4 (add slang word)" />
+    <MESSAGE value="Hàm EditSlangWord: Thêm in ra màn hình các thông báo khi chạy hàm, chỉnh sửa lại cấu trúc của hàm, chỉnh lại kiểu trả về của hàm là void (lúc trước là bool)&#10;Thêm menu cho chức năng edit" />
+    <MESSAGE value="Hoàn thành menu cho chức năng 6 (delete slang word)&#10;Thêm ghi file vào sau mỗi lần chọn các chức năng 4, 5, 6" />
+    <MESSAGE value="Hoàn thành đọc ghi file history&#10;Hoàn thành chức năng 3 (hiển thị history)&#10;Hoàn thành chức năng 7 (reset slang word gốc)" />
+    <MESSAGE value="Hoàn thành menu cho chức năng random slang word&#10;Hoàn thành menu cho chức năng đố vui theo slang word&#10;chỉnh sửa lại hàm của chức năng đố vui, thêm streak và best streak" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hoàn thành menu cho chức năng random slang word&#10;Hoàn thành menu cho chức năng đố vui theo slang word&#10;chỉnh sửa lại hàm của chức năng đố vui, thêm streak và best streak" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

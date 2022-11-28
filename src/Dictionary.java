@@ -6,7 +6,7 @@ public class Dictionary {
     private final Map<String, ArrayList<String>> originalList;
     private ArrayList<String> historyList;
 
-    private int streak, bestStreak;
+    private int streak, bestStreak, defBestStreak, defStreak;
 
     // Constructor doc file va luu vao list
     Dictionary(String fileDir, String originalFileDir, String historyFileDir){
@@ -16,6 +16,8 @@ public class Dictionary {
 
         streak = 0;
         bestStreak = 0;
+        defStreak = 0;
+        defBestStreak = 0;
     }
 
     List<String> searchByDefinition(String word){
@@ -51,8 +53,6 @@ public class Dictionary {
     }
 
     void showHistory(){
-        clearConsole();
-
         if(!historyList.isEmpty()){
             int i = 1;
 
@@ -338,7 +338,7 @@ public class Dictionary {
         System.out.println("Best Streak: " + bestStreak);
 
 
-        System.out.println("\n----------------------------\nSlang word: " + answerKey +"\n");
+        System.out.println("-----------------\nSlang word: " + answerKey +"\n");
         for(int i = 0; i < 4; ++i){
             System.out.println((i + 1) + ". " + multipleChoiceAnswer[i]);
         }
@@ -359,11 +359,12 @@ public class Dictionary {
         }
 
         else{
-            System.out.println("""
+            System.out.print("""
                         ----------------
                         ||   WRONG    ||
                         ----------------
                         """);
+            System.out.print("Correct answer: " + (answerIndex + 1) + "\n");
             streak = 0;
         }
 
@@ -386,19 +387,39 @@ public class Dictionary {
             multipleChoiceAnswer[i] = randomKey();
         }
 
-        System.out.println("Definition: " + answerDefinition);
+        System.out.println("Streak: " + defStreak);
+        System.out.println("Best Streak: " + defBestStreak);
+        System.out.println("-------------------\nDefinition: "
+                            + answerDefinition
+                            + "\n\nSlang Words: ");
 
         for(int i = 0; i < 4; ++i){
             System.out.println((i + 1) + ". " + multipleChoiceAnswer[i]);
         }
 
-        System.out.print("YOUR CHOICE: ");
+        System.out.print("\nYOUR CHOICE: ");
         choice = (new Scanner(System.in)).nextInt();
 
-        if(choice - 1 == answerIndex)
-            System.out.println("!!! CORRECT !!!");
-        else
-            System.out.println("!!! INCORRECT !!!");
+        if(choice - 1 == answerIndex) {
+            System.out.println("""
+                    ------------------
+                    ||   CORRECT    ||
+                    ------------------
+                    """);
+            this.defStreak++;
+
+            if (this.defStreak > this.defBestStreak)
+                this.defBestStreak = this.defStreak;
+        }
+        else{
+            System.out.print("""
+                        ----------------
+                        ||   WRONG    ||
+                        ----------------
+                        """);
+            System.out.print("Correct answer: " + (answerIndex + 1) + "\n");
+            this.defStreak = 0;
+        }
     }
 
     private void clearConsole(){
