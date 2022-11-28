@@ -6,11 +6,16 @@ public class Dictionary {
     private final Map<String, ArrayList<String>> originalList;
     private ArrayList<String> historyList;
 
+    private int streak, bestStreak;
+
     // Constructor doc file va luu vao list
     Dictionary(String fileDir, String originalFileDir, String historyFileDir){
         this.slangList = FileHandler.readFile(fileDir);
         this.originalList = FileHandler.readFile(originalFileDir);
         this.historyList = FileHandler.readHistory(historyFileDir);
+
+        streak = 0;
+        bestStreak = 0;
     }
 
     List<String> searchByDefinition(String word){
@@ -313,12 +318,12 @@ public class Dictionary {
         String []multipleChoiceAnswer = new String[4];
 
         int n = this.slangList.get(answerKey).size()
-                , answerIndex = (new Random()).nextInt(4), j = 0, choice = -1;
+                , answerIndex = (new Random()).nextInt(4), j = 0
+                , choice = -1;
 
         answerDefinition = this.slangList.get(answerKey).get((new Random()).nextInt(n));
         for(int i = 0; i < 3; ++i)
             multipleChoiceDefinition[i] = this.slangList.get(randomKey()).get(0);
-
 
         multipleChoiceAnswer[answerIndex] = answerDefinition;
         for(int i = 0; i < 4; ++i){
@@ -328,19 +333,41 @@ public class Dictionary {
             ++j;
         }
 
-        System.out.println("Slang word: " + answerKey );
 
+        System.out.println("Streak: " + streak);
+        System.out.println("Best Streak: " + bestStreak);
+
+
+        System.out.println("\n----------------------------\nSlang word: " + answerKey +"\n");
         for(int i = 0; i < 4; ++i){
             System.out.println((i + 1) + ". " + multipleChoiceAnswer[i]);
         }
 
-        System.out.print("YOUR CHOICE: ");
+        System.out.print("\nYOUR CHOICE: ");
         choice = (new Scanner(System.in)).nextInt();
 
-        if(choice - 1 == answerIndex)
-            System.out.println("!!! CORRECT !!!");
-        else
-            System.out.println("!!! INCORRECT !!!");
+
+        if(choice - 1 == answerIndex){
+            System.out.println("""
+                        ------------------
+                        ||   CORRECT    ||
+                        ------------------
+                        """);
+            streak++;
+            if(this.streak > this.bestStreak)
+                this.bestStreak = this.streak;
+        }
+
+        else{
+            System.out.println("""
+                        ----------------
+                        ||   WRONG    ||
+                        ----------------
+                        """);
+            streak = 0;
+        }
+
+
     }
 
     void quizDefinition(){

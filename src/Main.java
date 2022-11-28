@@ -148,6 +148,7 @@ public class Main {
                 dic.writeFile("src\\data\\slang.txt");
             }
             else if(featureChoice == 7){
+                clearConsole();
                 System.out.println("----- RESET ORIGINAL SLANG LIST -----");
 
                 dic.resetList();
@@ -160,6 +161,32 @@ public class Main {
                 dic.writeFile(slangDir);
 
                 pressToContinue();
+            }
+            else if(featureChoice == 8){
+                do{
+                    clearConsole();
+                    System.out.println("----- RANDOM (ON THIS DAY SLANG WORD) -----");
+
+                    dic.randomSlangWord();
+
+                    System.out.print("\nCONTINUE ? ");
+                    printYesNo();
+                    System.out.print("YOUR CHOICE: ");
+                    innerChoice = (new Scanner(System.in)).nextInt();
+                }while (innerChoice != 0);
+            }
+            else if(featureChoice == 9){
+                do{
+                    clearConsole();
+                    System.out.println("----- QUIZ SLANG WORD -----");
+
+                    dic.quizSlang();
+
+                    System.out.print("\nCONTINUE ? ");
+                    printYesNo();
+                    System.out.print("YOUR CHOICE: ");
+                    innerChoice = (new Scanner(System.in)).nextInt();
+                }while (innerChoice != 0);
             }
             clearConsole();
         }while (featureChoice != 0);
